@@ -1,0 +1,70 @@
+button {
+  &.btn-submit {
+    background-color: rgb(251, 121, 43);
+    color: azure;
+    height: 32px;
+    width: 140px;
+    border-radius: 6px 6px 6px 6px;
+    margin-left: 10px;
+    margin-top: 1.5rem;
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.login {
+      margin-left: 7.3rem;
+    }
+
+    &.login-modal{
+      background-color: rgb(33,61,119);
+      position: absolute;
+      top: 1%;
+      left: 80%;
+    }
+  }
+
+  &.train-book {
+    margin-left: 1.05rem;
+  }
+
+  &.train-avl-request {
+    position: absolute;
+    left: 40%;
+    height: 50px;
+    width: 95px;
+  }
+
+  &#x{
+    position: relative;
+    color: grey;
+    top: 5px;
+    left: 95%;
+    width: 20px;
+    border: none;
+    cursor: pointer;
+
+  }
+
+  &.remove-passenger{
+    position: relative;
+    border: none;
+    background-color: white;
+    color: #d11a2a;
+    cursor: pointer;
+    margin-top: 8px;
+    left: 50%;
+  }
+
+  &.add-passenger{
+    position: relative;
+    border: none;
+    background-color: white;
+    color: rgb(20,87,167);
+    cursor: pointer;
+    margin-top: 8px;
+    &:not(:nth-of-type(1)){
+      right: 5%;
+    }
+   
+  }
+}

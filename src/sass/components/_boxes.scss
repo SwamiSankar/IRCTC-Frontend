@@ -1,0 +1,13 @@
+.train-booking-box {
+  border: 2px solid white;
+  position: absolute;
+  width: 100px;
+  height: 75px;
+  left: 40%;
+
+  .train-avl {
+    margin-left: 1.2rem;
+    margin-top: 6.5px;
+    color: lawngreen;
+  }
+}

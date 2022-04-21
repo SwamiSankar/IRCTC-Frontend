@@ -1,0 +1,39 @@
+.edit-form-container {
+  display: inline-block;
+  height: 30em;
+  width: 45rem;
+  margin-left: 30%;
+  margin-top: 15%;
+  border: solid black 2px;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+}
+
+.train-display-list-container {
+  max-width: 80%;
+  width: 800px;
+  margin: 40px auto;
+}
+
+.login-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.passenger-form-container{
+  label:first-child{
+    position: absolute;
+    left: 45%;
+    top: 50%;
+    font-size: 18px;
+  }
+}

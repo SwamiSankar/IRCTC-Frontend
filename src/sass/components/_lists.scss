@@ -1,0 +1,37 @@
+ol {
+  counter-reset: section;
+}
+
+li.train-list {
+  list-style-type: none;
+  position: relative;
+  height: 170px;
+  font-size: 1.5rem;
+  padding: 15px;
+  margin-bottom: 15px;
+  background: #0e0fee;
+  color: #fff;
+}
+
+.train-heading {
+  display: flex;
+}
+
+.train-name {
+  margin-left: 15px;
+}
+
+.train-timings {
+  display: grid;
+  margin-top: 3rem;
+}
+
+.source-section {
+  position: relative;
+  grid-column: 1;
+}
+
+.destination-section {
+  position: relative;
+  grid-column: 9;
+}
