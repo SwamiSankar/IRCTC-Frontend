@@ -1,14 +1,19 @@
 import { Formik, Form, Field } from 'formik';
-import { parse, isDate } from 'date-fns';
+
 import moment from 'moment';
 import { axiosRequest } from '../../apis/apis';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
+
+import debounce from 'lodash.debounce';
 import * as Yup from 'yup';
 import DatePickerComponent from '../utils/DatePickerComponent';
 import { AppContext } from '../../App';
+import SearchResults from '../utils/SearchResults';
 
 const TrainSearchForm = () => {
   const { dispatch } = useContext(AppContext);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [stationList, setStationList] = useState([]);
   //   const buttonStyle = {
   //     height: '32px',
   //     width: '140px',
@@ -16,6 +21,42 @@ const TrainSearchForm = () => {
   //     marginLeft: '10px',
   //     marginTop: '1.5rem',
   //   };
+
+  const debouncedSave = useMemo(
+    () => debounce((value) => setSearchTerm(value), 1000),
+    []
+  );
+
+  console.log(searchTerm);
+
+  // const debouncedResults = useMemo(() => {
+  //   return debounce(handleChange, 300);
+  // }, []);
+
+  const getStationList = async (query) => {
+    return await axiosRequest.get(`/irctc/v1/station?name=${query}`);
+  };
+
+  useEffect(() => {
+    return () => {
+      debouncedSave.cancel();
+    };
+  });
+
+  useEffect(() => {
+    const getList = async () => {
+      const response = await getStationList(searchTerm);
+      const stationList = response.data.data;
+      setStationList(stationList);
+    };
+    if (searchTerm !== '') {
+      getList();
+    } else {
+      setStationList([]);
+    }
+  }, [searchTerm]);
+
+  console.log(stationList);
 
   const getTrainDetails = async (arr, source, destination) => {
     const sourceId = await axiosRequest.post('/irctc/v1/station/search', {
@@ -72,34 +113,72 @@ const TrainSearchForm = () => {
       console.log(error);
     }
   };
+
+  // const customChange = useCallback(
+  //   (e) => {
+  //     const value = e.target.value;
+  //     setFieldValue(e.target.name, value);
+  //     debouncedSave(value);
+  //   },
+  //   [setFieldValue]
+  // );
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
+      onChange={(values, actions) => {
+        console.log('On Change');
+      }}
     >
-      {({ touched, isValid, errors }) => {
+      {({ touched, isValid, errors, handleChange, setFieldValue }) => {
         return (
           <div className="edit-form-container">
             <div className="edit-form-wrapper">
               <Form className="form-container" autoComplete="off">
                 <div className="search-train form-group source">
                   <label htmlFor="source">Source</label>
-                  <Field type="text" className={'form-control'} name="source" />
+                  <Field
+                    type="search"
+                    className={'form-control'}
+                    name="source"
+                    list="stationList"
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      setFieldValue(e.target.name, value);
+                      debouncedSave(value);
+                    }}
+                  />
                   {touched.source && errors.source && (
                     <div className="login-form-error">{errors.source}</div>
                   )}
+                  {stationList.length > 0 ? (
+                    <datalist id="stationList">
+                      <SearchResults data={stationList} />
+                    </datalist>
+                  ) : null}
                 </div>
                 <div className="search-train form-group destination">
                   <label htmlFor="destination">Destination</label>
                   <Field
-                    type="text"
+                    type="search"
                     className={'form-control'}
                     name="destination"
+                    list="stationList"
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      setFieldValue(e.target.name, value);
+                      debouncedSave(value);
+                    }}
                   />
                   {touched.destination && errors.destination && (
                     <div className="login-form-error">{errors.destination}</div>
                   )}
+                  {stationList.length > 0 ? (
+                    <datalist id="stationList">
+                      <SearchResults data={stationList} />
+                    </datalist>
+                  ) : null}
                 </div>
                 <div className="search-train form-group date">
                   <label htmlFor="date">Date</label>

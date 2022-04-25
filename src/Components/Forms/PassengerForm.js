@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../App';
-import { Field, FieldArray, Form, Formik } from 'formik';
+import { Field, FieldArray, Form, Formik, useField } from 'formik';
 import * as Yup from 'yup';
 import Login from '../Pages/Login';
 
@@ -29,7 +29,11 @@ const PassengerForm = ({ data }) => {
     ),
   });
 
-  return token === undefined ? (
+  const onSubmit = (values) => {
+    console.log(values);
+  };
+
+  return token === null ? (
     <Login onClose={() => setShow(false)} show={show} />
   ) : (
     <>
@@ -45,12 +49,7 @@ const PassengerForm = ({ data }) => {
               },
             ],
           }}
-          validationSchema={validationSchema}
-          onSubmit={(values) =>
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-            }, 500)
-          }
+          onSubmit={onSubmit}
           render={({ values, touched, errors, isValid }) => (
             <Form>
               <label>Passenger Form</label>
@@ -76,10 +75,11 @@ const PassengerForm = ({ data }) => {
 
                             <Field
                               name={`passengerList.${index}.gender`}
-                              placeholder="Gender"
+                              label="Gender"
                               as="select"
                               className="passenger-gender"
                             >
+                              <option value="">Select Gender</option>
                               <option value="male">Male</option>
                               <option value="female">Female</option>
                               <option value="other">Other</option>
@@ -91,6 +91,7 @@ const PassengerForm = ({ data }) => {
                               className="passenger-berth"
                               as="select"
                             >
+                              <option value="">Select Berth</option>
                               <option value="lb">Lower</option>
                               <option value="mb">Middle</option>
                               <option value="ub">Upper</option>
@@ -115,7 +116,7 @@ const PassengerForm = ({ data }) => {
                               type="button"
                               className="btn add-passenger"
                               onClick={() =>
-                                arrayHelpers.insert({
+                                arrayHelpers.push({
                                   name: '',
                                   age: '',
                                   gender: '',
@@ -146,10 +147,10 @@ const PassengerForm = ({ data }) => {
                       </button>
                     )}
                     <div>
-                      <button type="submit" className="btn submit-passengers">
+                      <button type="submit" className="btn-submit">
                         Submit
                       </button>
-                      <button
+                      {/* <button
                         type="button"
                         onClick={() => {
                           if (
@@ -163,7 +164,7 @@ const PassengerForm = ({ data }) => {
                         }}
                       >
                         Go Back
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 )}

@@ -56,11 +56,41 @@
 .passenger-entry{
   display: flex;
   gap: 15px;
+  height : 50px;
+  width: 100%;
+
+  input{
+    text-align: center;
+  }
  
 }
 
 .passenger-name{
-  flex-basis: 100px;
+  height: 100%;
+  width: 40%;
+  
 }
+
+.passenger-age{
+  height: 70%;
+    width: 5%;
+    margin-top: 7px;
+
+}
+
+.passenger-gender{
+  height: 70%;
+  width: 10%;
+  margin-top: 7px;
+}
+
+.passenger-berth{
+  height: 70%;
+  width: 10%;
+  margin-top: 7px;
+}
+
+
+
 
 

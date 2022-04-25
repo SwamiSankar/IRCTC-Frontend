@@ -27,7 +27,9 @@ const Homepage = () => {
     }
   }, [trainDetails]);
 
-  useEffect(() => {}, [token]);
+  useEffect(() => {
+    console.log('Token added');
+  }, [token]);
 
   console.log(bookingEnable);
 
