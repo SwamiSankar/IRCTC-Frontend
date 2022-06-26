@@ -23,16 +23,30 @@ const TicketDisplay = ({ ticketData }) => {
 
   return ticketDetails ? (
     <div className="ticket-display-container">
-      <div className="ticket-pnr">{ticketDetails.pnr}</div>
-      <div className="train-name">{trainDetails.trainName}</div>
+      <div className="ticket-details">
+        <div className="ticket-pnr">PNR : {ticketDetails.pnr}</div>
+        <div className="train-name">Train Name : {trainDetails.trainName}</div>
+      </div>
       <div className="passenger-list">
-        {ticketDetails.passengers.map((passenger) => {
+        {ticketDetails.passengers.map((passenger, index) => {
           return (
-            <div className="passenger-data">
-              <div className="passenger-name">{passenger.name}</div>
-              <div className="passenger-age">{passenger.age}</div>
-              <div className="passenger-seat">{passenger.seatNumber}</div>
-            </div>
+            <>
+              <div className="passenger-data">
+                <label className="passenger">Passenger {index + 1}</label>
+                <div className="passenger-name">
+                  <label>Name</label>
+                  {passenger.name}
+                </div>
+                <div className="passenger-age">
+                  <label>Age</label>
+                  {passenger.age}
+                </div>
+                <div className="passenger-seat">
+                  <label>Seat</label>
+                  {passenger.seatNumber}
+                </div>
+              </div>
+            </>
           );
         })}
       </div>

@@ -254,3 +254,41 @@ li.train-list {
   top: 1%;
   left: 80%;
   font-size: 18px; }
+
+.ticket-display-container {
+  margin-top: 14%;
+  margin-left: 2%;
+  display: flex;
+  flex-direction: column; }
+  .ticket-display-container .passenger-list {
+    padding: 10px; }
+
+.ticket-pnr {
+  padding: 10px;
+  margin-left: 16px; }
+
+.train-name {
+  margin-left: auto;
+  margin-top: 12px;
+  margin-right: 60px; }
+
+.passenger-data {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px; }
+  .passenger-data label {
+    font-weight: 500; }
+  .passenger-data label.passenger {
+    margin-top: 15px; }
+  .passenger-data div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; }
+  .passenger-data .passenger-name {
+    margin-top: 7px; }
+  .passenger-data .passenger-seat {
+    margin-top: 7px; }
+
+.ticket-details {
+  display: flex;
+  padding: 10px; }
