@@ -37,14 +37,21 @@ body {
   align-items: center;
   height: 100vh; }
 
-.passenger-form-container form {
-  position: relative; }
+.passenger-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px; }
+  .passenger-form-container form {
+    position: relative; }
+  .passenger-form-container label:first-child {
+    position: absolute;
+    top: -30%;
+    left: 44%;
+    font-size: 18px; }
 
-.passenger-form-container label:first-child {
-  position: absolute;
-  top: -30%;
-  left: 44%;
-  font-size: 18px; }
+.passenger-form-train-details-container {
+  margin: 11% 1% 4% 2%;
+  width: 80%; }
 
 .search-train {
   margin: 10px;
@@ -77,7 +84,9 @@ body {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  margin: 20em;
+  margin-left: 2%;
+  width: 90%;
+  padding-bottom: 15px;
   border: 2px solid black; }
 
 .passenger-field {
@@ -102,12 +111,12 @@ body {
 
 .passenger-gender {
   height: 70%;
-  width: 10%;
+  width: 12%;
   margin-top: 7px; }
 
 .passenger-berth {
   height: 70%;
-  width: 10%;
+  width: 12%;
   margin-top: 7px; }
 
 button.btn-submit {
@@ -120,6 +129,17 @@ button.btn-submit {
   margin-top: 1.5rem; }
   button.btn-submit:hover {
     cursor: pointer; }
+  button.btn-submit-disabled {
+    background-color: #fb792b;
+    opacity: 0.5;
+    color: azure;
+    height: 32px;
+    width: 140px;
+    border-radius: 6px 6px 6px 6px;
+    margin-left: 10px;
+    margin-top: 1.5rem; }
+    button.btn-submit-disabled:hover {
+      cursor: not-allowed; }
   button.btn-submit.login {
     margin-left: 7.3rem; }
   button.btn-submit.login-modal {

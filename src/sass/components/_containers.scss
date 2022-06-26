@@ -30,6 +30,9 @@
 }
 
 .passenger-form-container{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
   form{
     position: relative;
   }
@@ -39,5 +42,10 @@
     left: 44%;
     font-size: 18px;
   }
+}
+
+.passenger-form-train-details-container{
+  margin: 11% 1% 4% 2%;
+  width: 80%;
 }
 

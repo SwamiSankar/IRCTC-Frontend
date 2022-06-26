@@ -45,13 +45,17 @@ const TrainDisplay = ({ train, stations }) => {
     dispatch({
       type: 'TRAIN_DETAILS',
       data: {
+        trainId: train.id,
         trainNumber: train.number,
         trainName: train.name,
+        sourceId: stations.sourceId,
         source: stations.source,
+        destinationId: stations.destinationId,
         destination: stations.destination,
         departureTime: schedule.departure,
         arrivalTime: schedule.arrival,
         avl: train.availability.seats,
+        date: train.date,
         bookingEnabled: true,
       },
     });

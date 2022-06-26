@@ -11,6 +11,20 @@ button {
       cursor: pointer;
     }
 
+    &-disabled{
+      background-color: rgb(251, 121, 43);
+      opacity: 0.5;
+    color: azure;
+    height: 32px;
+    width: 140px;
+    border-radius: 6px 6px 6px 6px;
+    margin-left: 10px;
+    margin-top: 1.5rem;
+      &:hover{
+        cursor: not-allowed;
+      }
+    }
+
     &.login {
       margin-left: 7.3rem;
     }

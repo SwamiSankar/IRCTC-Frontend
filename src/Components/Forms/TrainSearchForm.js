@@ -108,6 +108,7 @@ const TrainSearchForm = () => {
         '/irctc/v1/trains/search',
         values
       );
+      response.data.data[0].date = date;
       getTrainDetails(response.data.data, source, destination);
     } catch (error) {
       console.log(error);

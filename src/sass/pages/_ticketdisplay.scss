@@ -1,0 +1,32 @@
+.ticket-display-container{
+    margin-top: 14%;
+    margin-left: 2%;
+    display: flex;
+    flex-direction: column;
+
+    .passenger-list{
+padding: 10px;
+    }
+}
+
+
+.ticket-pnr{
+    padding: 10px;
+    margin-left: 16px;
+}
+
+.train_name{
+        padding: 10px;
+    
+}
+
+.passenger-data{
+display: flex;
+
+.passenger-name{
+    margin-top: 7px;
+}
+.passenger-seat{
+    margin-top: 7px;
+}
+}

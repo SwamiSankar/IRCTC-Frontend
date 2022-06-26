@@ -5,21 +5,39 @@ import TrainDisplayList from '../Lists/TrainDisplayList';
 import PassengerForm from '../Forms/PassengerForm';
 import Login from './Login';
 import UserDetailsCard from '../Cards/UserDetailsCard';
+import { axiosTokenRequest } from '../../apis/apis';
+import TicketDisplay from './TicketDisplay';
 
 const Homepage = () => {
   const [bookingEnable, setBookingEnable] = useState(false);
   const [show, setShow] = useState(false);
   const { state } = useContext(AppContext);
+  const [ticketBooked, setTicketBooked] = useState(false);
+  const [ticketDetails, setTicketDetails] = useState();
 
   const trainData = state.trainData;
   let trainDetails = state.trainDetails;
   let token = state.loginToken;
 
-  console.log(token);
+  const displayTicket = () => {
+    setTicketBooked(true);
+  };
 
   if (token === undefined) {
     token = sessionStorage.getItem('token');
   }
+
+  useEffect(() => {
+    if (ticketBooked) {
+      setTicketDetails({
+        train: trainDetails.trainId,
+        from: trainDetails.sourceId,
+        to: trainDetails.destinationId,
+        date: trainDetails.date,
+        passengers: state.passengerList,
+      });
+    }
+  }, [ticketBooked]);
 
   useEffect(() => {
     if (trainDetails !== undefined) {
@@ -31,19 +49,27 @@ const Homepage = () => {
     console.log('Token added');
   }, [token]);
 
-  console.log(bookingEnable);
-
   return (
     <>
       <div className="homepage-container">
-        {!bookingEnable ? (
-          trainData?.length > 0 ? (
-            <TrainDisplayList data={trainData} />
-          ) : (
-            <TrainSearchCard />
-          )
+        {!ticketBooked ? (
+          <>
+            {' '}
+            {!bookingEnable ? (
+              trainData?.length > 0 ? (
+                <TrainDisplayList data={trainData} />
+              ) : (
+                <TrainSearchCard />
+              )
+            ) : (
+              <PassengerForm
+                data={trainDetails}
+                displayTicket={displayTicket}
+              />
+            )}
+          </>
         ) : (
-          <PassengerForm data={trainDetails} />
+          <TicketDisplay ticketData={ticketDetails} />
         )}
 
         {token === '' ? (
